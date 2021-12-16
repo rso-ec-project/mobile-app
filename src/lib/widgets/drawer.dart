@@ -13,7 +13,7 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(),
-          _createDrawerItem(icon: Icons.contacts, text: 'Charging Stations', onTap: () =>
+          _createDrawerItem(icon: Icons.ev_station_rounded, text: 'Charging Stations', onTap: () =>
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -21,7 +21,7 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
           ),
-          _createDrawerItem(icon: Icons.event, text: 'Tenants', onTap: () =>
+          _createDrawerItem(icon: Icons.business, text: 'Tenants', onTap: () =>
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -29,7 +29,7 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
             ),
-          _createDrawerItem(icon: Icons.note, text: 'Reservations', onTap: () =>
+          _createDrawerItem(icon: Icons.history, text: 'Reservations', onTap: () =>
               Navigator.push(
                 context,
                 MaterialPageRoute(
