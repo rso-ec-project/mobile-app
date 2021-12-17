@@ -1,3 +1,5 @@
+import 'package:charging_stations_mobile/models/Tenant.dart';
+import 'package:charging_stations_mobile/services/tenant_service.dart';
 import 'package:charging_stations_mobile/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,15 @@ class TenantsScreen extends StatefulWidget {
 }
 
 class _TenantsScreenState extends State<TenantsScreen> {
+
+  late Future<List<Tenant>> futureTenants;
+
+  @override
+  void initState() {
+    super.initState();
+    futureTenants = TenantService.getAsync();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +27,40 @@ class _TenantsScreenState extends State<TenantsScreen> {
           title: const Text("Tenants"),
         ),
         drawer: const AppDrawer(),
-        body: const Center(child: Text("Tenants")));
+        body: Column(
+          children: [
+            const SizedBox(
+              height: 40,
+              child: Text('Filters'),
+            ),
+            Expanded(
+              child: FutureBuilder <List<Tenant>>(
+                future: futureTenants,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    List<Tenant> data = snapshot.data as List<Tenant>;
+                    return
+                      ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var tenant = data[index];
+                            return ListTile(
+                              title: Text(tenant.name),
+                              subtitle: Text(tenant.address),
+                              isThreeLine: true,
+                            );
+                          }
+                      );
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  // By default show a loading spinner.
+                  return const Center(child: CircularProgressIndicator());
+                },
+              ),
+            ),
+          ],
+        )
+    );
   }
 }
