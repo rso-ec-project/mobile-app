@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:charging_stations_mobile/models/ChargingStation.dart';
+import 'package:charging_stations_mobile/screens/charging_station_detail.dart';
 import 'package:charging_stations_mobile/services/charging_station_service.dart';
 import 'package:charging_stations_mobile/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,14 @@ class _ChargingStationsScreenState extends State<ChargingStationsScreen> {
                               title: Text(chargingStation.tenantId.toString() + ' ' + chargingStation.name),
                               subtitle: Text(chargingStation.address),
                               isThreeLine: true,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ChargingStationDetailScreen(chargingStationId: chargingStation.id,),
+                                  ),
+                                );
+                              },
                             );
                           }
                       );
