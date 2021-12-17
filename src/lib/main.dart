@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:charging_stations_mobile/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    HttpOverrides.global = MyHttpOverrides();
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -39,5 +44,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: const AppDrawer(),
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
 }
