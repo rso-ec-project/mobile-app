@@ -1,4 +1,4 @@
-class ChargingStation {
+class ChargingStationBasic {
   final int id;
   final String name;
   final String address;
@@ -6,16 +6,16 @@ class ChargingStation {
   final double longitude;
   final int tenantId;
 
-  ChargingStation(this.id, this.name, this.address, this.latitude, this.longitude, this.tenantId);
+  ChargingStationBasic(this.id, this.name, this.address, this.latitude, this.longitude, this.tenantId);
 
-  factory ChargingStation.fromJson(Map<String, dynamic> json) {
-    return ChargingStation(
+  factory ChargingStationBasic.fromJson(Map<String, dynamic> json) {
+        return ChargingStationBasic(
         json['id'],
         json['name'],
         json['address'],
         json['latitude'],
         json['longitude'],
-        json['tenantId'],
+        json['tenantId']
     );
   }
 }
