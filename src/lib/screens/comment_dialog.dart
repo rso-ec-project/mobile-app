@@ -38,6 +38,18 @@ class _CommentDialogState extends State<CommentDialog> {
     return FutureBuilder<List<Comment>>(
       future: futureComments,
       builder: (context, snapshot) {
+
+        if (snapshot.hasError) {
+          return const SimpleDialog(
+            title: Text("Comments & Ratings are currently unavailable."),
+            children: [
+              SizedBox(
+                height: 5,
+              )
+            ],
+          );
+        }
+
         if (snapshot.hasData) {
           var comments = snapshot.data as List<Comment>;
 
@@ -64,7 +76,6 @@ class _CommentDialogState extends State<CommentDialog> {
 
   Widget createFullDialog(Comment comment) {
 
-    rating = comment.rating;
     _commentController.text = comment.content;
 
     return SimpleDialog(
@@ -90,7 +101,7 @@ class _CommentDialogState extends State<CommentDialog> {
           spacing: 5,
           children: [
             RatingBar.builder(
-              initialRating: rating.toDouble(),
+              initialRating: comment.rating.toDouble(),
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: false,

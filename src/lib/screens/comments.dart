@@ -36,6 +36,13 @@ class _CommentsScreenState extends State<CommentsScreen> {
       body: FutureBuilder<List<Comment>>(
         future: futureComments,
         builder: (context, snapshot) {
+
+          if (snapshot.hasError){
+            return const Center(
+              child: Text("Comments & Ratings are currently unavailable."),
+            );
+          }
+
           if (snapshot.hasData) {
             var comments = snapshot.data as List<Comment>;
             return ListView.builder(
