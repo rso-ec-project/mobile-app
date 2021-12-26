@@ -24,7 +24,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
     super.initState();
     chargingStationId = widget.chargingStationId;
     chargingStationName = widget.chargingStationName;
-    futureComments = CommentService.getAsync();
+    futureComments = CommentService.getAsync(chargingStationId);
   }
 
   @override
