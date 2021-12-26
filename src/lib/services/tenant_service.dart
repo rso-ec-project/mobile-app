@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:charging_stations_mobile/models/Tenant.dart';
+import 'package:charging_stations_mobile/models/tenant.dart';
 import 'package:http/http.dart' as http;
 
 import '../config.dart';

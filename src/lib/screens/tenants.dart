@@ -1,4 +1,4 @@
-import 'package:charging_stations_mobile/models/Tenant.dart';
+import 'package:charging_stations_mobile/models/tenant.dart';
 import 'package:charging_stations_mobile/services/tenant_service.dart';
 import 'package:charging_stations_mobile/widgets/drawer.dart';
 import 'package:flutter/material.dart';

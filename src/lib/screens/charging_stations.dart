@@ -1,6 +1,5 @@
-import 'dart:convert';
-
-import 'package:charging_stations_mobile/models/ChargingStation.dart';
+import 'package:charging_stations_mobile/models/charging_station_basic.dart';
+import 'package:charging_stations_mobile/screens/charging_station_detail.dart';
 import 'package:charging_stations_mobile/services/charging_station_service.dart';
 import 'package:charging_stations_mobile/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ class ChargingStationsScreen extends StatefulWidget {
 
 class _ChargingStationsScreenState extends State<ChargingStationsScreen> {
 
-  late Future<List<ChargingStation>> futureChargingStations;
+  late Future<List<ChargingStationBasic>> futureChargingStations;
 
   @override
   void initState() {
@@ -36,11 +35,11 @@ class _ChargingStationsScreenState extends State<ChargingStationsScreen> {
               child: Text('Filters'),
             ),
             Expanded(
-              child: FutureBuilder <List<ChargingStation>>(
+              child: FutureBuilder <List<ChargingStationBasic>>(
                 future: futureChargingStations,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    List<ChargingStation> data = snapshot.data as List<ChargingStation>;
+                    List<ChargingStationBasic> data = snapshot.data as List<ChargingStationBasic>;
                     return
                       ListView.builder(
                           itemCount: data.length,
@@ -50,6 +49,14 @@ class _ChargingStationsScreenState extends State<ChargingStationsScreen> {
                               title: Text(chargingStation.tenantId.toString() + ' ' + chargingStation.name),
                               subtitle: Text(chargingStation.address),
                               isThreeLine: true,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ChargingStationDetailScreen(chargingStationId: chargingStation.id,),
+                                  ),
+                                );
+                              },
                             );
                           }
                       );
