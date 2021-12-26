@@ -205,11 +205,8 @@ class _CommentDialogState extends State<CommentDialog> {
               child: const Text("Submit", style: TextStyle(color: Colors.white),),
               onPressed: () {
                 var commentPost = CommentPost(_commentController.text, rating, Config.userId, chargingStationId);
-                print(commentPost.userId);
-                print(commentPost.chargingStationId);
-                print(commentPost.rating);
-                print(commentPost.content);
                 CommentService.postAsync(commentPost);
+                Navigator.pop(context);
               },
             )
           ],
