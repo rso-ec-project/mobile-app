@@ -10,12 +10,12 @@ class Comment {
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
-      json['id'],
-      json['content'],
-      json['rating'],
-      DateTime.parse(json['createdAt']),
-      json['userId'],
-      json['chargingStationId']
+      json['Id'],
+      json['Content'],
+      json['Rating'],
+      DateTime.parse(json['CreatedAt']),
+      json['UserId'],
+      json['ChargingStationId']
     );
   }
 }

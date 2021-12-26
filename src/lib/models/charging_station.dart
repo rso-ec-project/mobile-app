@@ -17,28 +17,28 @@ class ChargingStation {
   factory ChargingStation.fromJson(Map<String, dynamic> json) {
 
       Rating? ratingDetails;
-      if (json['ratingDetails'] == null){
+      if (json['RatingDetails'] == null){
         ratingDetails = null;
       }
       else{
-        ratingDetails = Rating.fromJson(json['ratingDetails']);
+        ratingDetails = Rating.fromJson(json['RatingDetails']);
       }
 
       List<ReservationSlot>? reservationSlots;
-      if (json['reservationSlots'] == null){
+      if (json['ReservationSlots'] == null){
         reservationSlots = null;
       }
       else{
-        reservationSlots = List<ReservationSlot>.from(json['reservationSlots'].map((data) => ReservationSlot.fromJson(data)));
+        reservationSlots = List<ReservationSlot>.from(json['ReservationSlots'].map((data) => ReservationSlot.fromJson(data)));
       }
 
       return ChargingStation(
-        json['id'],
-        json['name'],
-        json['address'],
-        json['latitude'],
-        json['longitude'],
-        json['tenantId'],
+        json['Id'],
+        json['Name'],
+        json['Address'],
+        json['Latitude'],
+        json['Longitude'],
+        json['TenantId'],
         ratingDetails,
         reservationSlots
       );

@@ -11,13 +11,13 @@ class Rating {
 
   factory Rating.fromJson(Map<String, dynamic> json) {
     return Rating(
-      double.parse(json['rating'].toString()),
-      json['totalRatingCount'],
-      json['rating1Count'],
-      json['rating2Count'],
-      json['rating3Count'],
-      json['rating4Count'],
-      json['rating5Count'],
+      double.parse(json['Rating'].toString()),
+      json['TotalRatingCount'],
+      json['Rating1Count'],
+      json['Rating2Count'],
+      json['Rating3Count'],
+      json['Rating4Count'],
+      json['Rating5Count'],
     );
   }
 }

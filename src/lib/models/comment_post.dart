@@ -8,10 +8,10 @@ class CommentPost {
 
   Map<String, dynamic> toJson() {
     return {
-      "content": content,
-      "rating": rating,
-      "userId": userId,
-      "chargingStationId": chargingStationId,
+      "Content": content,
+      "Rating": rating,
+      "UserId": userId,
+      "ChargingStationId": chargingStationId,
     };
   }
 }

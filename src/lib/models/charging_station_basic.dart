@@ -10,12 +10,12 @@ class ChargingStationBasic {
 
   factory ChargingStationBasic.fromJson(Map<String, dynamic> json) {
         return ChargingStationBasic(
-        json['id'],
-        json['name'],
-        json['address'],
-        json['latitude'],
-        json['longitude'],
-        json['tenantId']
+        json['Id'],
+        json['Name'],
+        json['Address'],
+        json['Latitude'],
+        json['Longitude'],
+        json['TenantId']
     );
   }
 }

@@ -6,8 +6,8 @@ class CommentPut {
 
   Map<String, dynamic> toJson() {
     return {
-      "content": content,
-      "rating": rating
+      "Content": content,
+      "Rating": rating
     };
   }
 }
