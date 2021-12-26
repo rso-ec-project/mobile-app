@@ -1,5 +1,6 @@
 import 'package:charging_stations_mobile/models/charging_station.dart';
 import 'package:charging_stations_mobile/models/rating.dart';
+import 'package:charging_stations_mobile/models/reservation_slot.dart';
 import 'package:charging_stations_mobile/services/charging_station_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -74,18 +75,23 @@ class _ChargingStationDetailScreenState extends State<ChargingStationDetailScree
                   const SizedBox(
                     height: 10,
                   ),
-                  Column(
-                    children: [
-                      ListTile(
-                        leading: const Icon(Icons.ev_station, color: Colors.black,),
-                        title: const Text("Quick Reservation"),
-                        trailing: InkResponse(
-                          child: const Text("View all chargers", style: TextStyle(color: Colors.blue),),
-                          onTap: () {},
+                  Expanded(
+                    child: Column(
+                      children: [
+                        ListTile(
+                          leading: const Icon(Icons.ev_station, color: Colors.black,),
+                          title: const Text("Quick Reservation"),
+                          trailing: InkResponse(
+                            child: const Text("View all chargers", style: TextStyle(color: Colors.blue),),
+                            onTap: () {},
+                          ),
                         ),
-                      ),
-                    ],
-                  )
+                        Container(
+                          child: createQuickReservationList(chargingStation),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -183,5 +189,31 @@ class _ChargingStationDetailScreenState extends State<ChargingStationDetailScree
         createRatingDetail('5', details.rating5Count, details.totalRatingCount),
       ],
     );
+  }
+
+  Widget createQuickReservationList(ChargingStation chargingStation){
+    if (chargingStation.reservationSlots != null){
+      var reservationSlots = chargingStation.reservationSlots as List<ReservationSlot>;
+      return Expanded(
+          child: ListView.builder(
+            itemCount: reservationSlots.length,
+            itemBuilder: (context, i) {
+              var reservationSlot = reservationSlots[i];
+              var day = "${reservationSlot.from.day.toString()}.${reservationSlot.from.month.toString()}.${reservationSlot.from.year.toString()}";
+              var from = "${reservationSlot.from.hour.toString().padLeft(2, '0')}:${reservationSlot.from.minute.toString().padRight(2, '0')}";
+              var to = "${reservationSlot.to.hour.toString().padLeft(2, '0')}:${reservationSlot.to.minute.toString().padRight(2, '0')}";
+
+              return ListTile(
+                leading: const Icon(Icons.electrical_services),
+                title: Text("$day, $from - $to"),
+                subtitle: Text(reservationSlot.chargerName),
+              );
+            },
+        )
+      );
+    }
+    else{
+      return const Text("Reservations are currently unavailable");
+    }
   }
 }

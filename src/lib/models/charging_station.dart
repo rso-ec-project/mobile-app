@@ -1,3 +1,5 @@
+import 'package:charging_stations_mobile/models/reservation_slot.dart';
+
 import 'rating.dart';
 
 class ChargingStation {
@@ -8,8 +10,9 @@ class ChargingStation {
   final double longitude;
   final int tenantId;
   final Rating? ratingDetails;
+  final List<ReservationSlot>? reservationSlots;
 
-  ChargingStation(this.id, this.name, this.address, this.latitude, this.longitude, this.tenantId, this.ratingDetails);
+  ChargingStation(this.id, this.name, this.address, this.latitude, this.longitude, this.tenantId, this.ratingDetails, this.reservationSlots);
 
   factory ChargingStation.fromJson(Map<String, dynamic> json) {
 
@@ -21,6 +24,14 @@ class ChargingStation {
         ratingDetails = Rating.fromJson(json['ratingDetails']);
       }
 
+      List<ReservationSlot>? reservationSlots;
+      if (json['reservationSlots'] == null){
+        reservationSlots = null;
+      }
+      else{
+        reservationSlots = List<ReservationSlot>.from(json['reservationSlots'].map((data) => ReservationSlot.fromJson(data)));
+      }
+
       return ChargingStation(
         json['id'],
         json['name'],
@@ -29,6 +40,7 @@ class ChargingStation {
         json['longitude'],
         json['tenantId'],
         ratingDetails,
+        reservationSlots
       );
   }
 }
