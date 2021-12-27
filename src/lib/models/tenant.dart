@@ -7,9 +7,9 @@ class Tenant {
 
   factory Tenant.fromJson(Map<String, dynamic> json) {
     return Tenant(
-      json['id'],
-      json['name'],
-      json['address'],
+      json['Id'],
+      json['Name'],
+      json['Address'],
     );
   }
 }

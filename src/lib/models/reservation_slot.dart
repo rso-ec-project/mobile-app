@@ -9,11 +9,11 @@ class ReservationSlot {
 
   factory ReservationSlot.fromJson(Map<String, dynamic> json) {
     return ReservationSlot(
-      json['chargerId'],
-      json['chargerName'],
-      json['duration'],
-      DateTime.parse(json['from']),
-      DateTime.parse(json['to']),
+      json['ChargerId'],
+      json['ChargerName'],
+      json['Duration'],
+      DateTime.parse(json['From']),
+      DateTime.parse(json['To']),
     );
   }
 }
