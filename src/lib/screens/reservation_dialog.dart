@@ -127,8 +127,16 @@ class _ReservationDialogState extends State<ReservationDialog> {
             ),
             ElevatedButton(
               child: const Text("Submit", style: TextStyle(color: Colors.white),),
-              onPressed: () {
-                ReservationService.postAsync(ReservationPost(startTime, endTime, Config.userId, reservationSlot.chargerId));
+              onPressed: () async {
+                var response = await ReservationService.postAsync(ReservationPost(startTime, endTime, Config.userId, reservationSlot.chargerId));
+
+                if (response.statusCode == 409){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    backgroundColor: Colors.red,
+                    content: Text("Posted reservation is overlapping with an existing reservation."),
+                  ));
+                }
+
                 Navigator.pop(context);
               },
             ),

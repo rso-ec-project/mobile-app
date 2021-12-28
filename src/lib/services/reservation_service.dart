@@ -29,15 +29,14 @@ class ReservationService {
     }
   }
 
-  static Future<Reservation> postAsync(ReservationPost reservationPost) async {
+  static Future<HttpClientResponse> postAsync(ReservationPost reservationPost) async {
     HttpClientRequest request = await client.postUrl(Uri.parse(Config.resUrl + '/Reservations'));
     request.headers.set('Content-Type', 'application/json');
     print(jsonEncode(reservationPost.toJson()));
     request.write(jsonEncode(reservationPost.toJson()));
     HttpClientResponse response = await request.close();
     print(response.statusCode);
-    String contents = await response.transform(utf8.decoder).join();
-    return Reservation.fromJson(json.decode(contents));
+    return response;
   }
 
   static Future<List<ReservationSlot>> getEmptyReservationSlotsList() async {
