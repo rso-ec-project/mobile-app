@@ -1,5 +1,5 @@
 import 'package:charging_stations_mobile/screens/charging_stations.dart';
-import 'package:charging_stations_mobile/screens/reservations.dart';
+import 'package:charging_stations_mobile/screens/chargers.dart';
 import 'package:charging_stations_mobile/screens/tenants.dart';
 import 'package:flutter/material.dart';
 
@@ -29,15 +29,7 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
             ),
-          _createDrawerItem(icon: Icons.history, text: 'Reservations', onTap: () =>
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ReservationsScreen(),
-                ),
-              )
-          )
-        ],
+          ],
       ),
     );
   }
