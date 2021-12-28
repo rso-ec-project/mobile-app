@@ -10,7 +10,7 @@ class ReservationSlot {
   factory ReservationSlot.fromJson(Map<String, dynamic> json) {
     return ReservationSlot(
       json['ChargerId'],
-      json['ChargerName'],
+      json['ChargerName'] ?? '',
       json['Duration'],
       DateTime.parse(json['From']),
       DateTime.parse(json['To']),

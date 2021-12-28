@@ -30,10 +30,6 @@ class _ChargingStationsScreenState extends State<ChargingStationsScreen> {
         drawer: const AppDrawer(),
         body: Column(
           children: [
-            const SizedBox(
-              height: 40,
-              child: Text('Filters'),
-            ),
             Expanded(
               child: FutureBuilder <List<ChargingStationBasic>>(
                 future: futureChargingStations,

@@ -1,8 +1,10 @@
+import 'package:charging_stations_mobile/models/charger.dart';
 import 'package:charging_stations_mobile/models/charging_station.dart';
 import 'package:charging_stations_mobile/models/rating.dart';
 import 'package:charging_stations_mobile/models/reservation_slot.dart';
 import 'package:charging_stations_mobile/screens/comment_dialog.dart';
 import 'package:charging_stations_mobile/screens/comments.dart';
+import 'package:charging_stations_mobile/screens/chargers.dart';
 import 'package:charging_stations_mobile/services/charging_station_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -97,7 +99,14 @@ class _ChargingStationDetailScreenState extends State<ChargingStationDetailScree
                           title: const Text("Quick Reservation"),
                           trailing: InkResponse(
                             child: const Text("View all chargers", style: TextStyle(color: Colors.blue),),
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ChargersScreen(chargingStationId: chargingStation.id),
+                                ),
+                              );
+                            },
                           ),
                         ),
                         Container(
