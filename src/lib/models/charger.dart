@@ -4,8 +4,10 @@ class Charger {
   final double chargingFeePerKwh;
   final String modelName;
   final String manufacturer;
+  final String chargingStationName;
+  final String address;
 
-  Charger(this.id, this.name, this.chargingFeePerKwh, this.modelName, this.manufacturer);
+  Charger(this.id, this.name, this.chargingFeePerKwh, this.modelName, this.manufacturer, this.chargingStationName, this.address);
 
   factory Charger.fromJson(Map<String, dynamic> json) {
     return Charger(
@@ -13,7 +15,9 @@ class Charger {
         json['Name'],
         json['ChargingFeePerKwh'],
         json['ModelName'],
-        json['Manufacturer']
+        json['Manufacturer'],
+        json['ChargingStationName'],
+        json['Address'],
     );
   }
 }

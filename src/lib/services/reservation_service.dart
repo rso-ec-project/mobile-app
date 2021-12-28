@@ -54,6 +54,12 @@ class ReservationService {
     return response;
   }
 
+  static Future<bool> deleteAsync(int reservationId) async {
+    HttpClientRequest request = await client.deleteUrl(Uri.parse(Config.resUrl + '/Reservations/' + reservationId.toString()));
+    HttpClientResponse response = await request.close();
+    return response.statusCode == 200;
+  }
+
   static Future<List<ReservationSlot>> getEmptyReservationSlotsList() async {
     return <ReservationSlot>[];
   }

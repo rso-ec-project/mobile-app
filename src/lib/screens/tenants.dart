@@ -29,10 +29,6 @@ class _TenantsScreenState extends State<TenantsScreen> {
         drawer: const AppDrawer(),
         body: Column(
           children: [
-            const SizedBox(
-              height: 40,
-              child: Text('Filters'),
-            ),
             Expanded(
               child: FutureBuilder <List<Tenant>>(
                 future: futureTenants,
