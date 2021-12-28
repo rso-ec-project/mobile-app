@@ -29,6 +29,21 @@ class ReservationService {
     }
   }
 
+  static Future<List<Reservation>> getReservationsAsync(int userId) async {
+    var requestString = Config.resUrl + '/Reservations';
+    requestString += '?userId=' + userId.toString();
+
+    final response = await http.get(Uri.parse(requestString));
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      print(response.body);
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((data) => Reservation.fromJson(data)).toList();
+    } else {
+      throw Exception('Unexpected error occured!');
+    }
+  }
+
   static Future<HttpClientResponse> postAsync(ReservationPost reservationPost) async {
     HttpClientRequest request = await client.postUrl(Uri.parse(Config.resUrl + '/Reservations'));
     request.headers.set('Content-Type', 'application/json');
@@ -37,6 +52,12 @@ class ReservationService {
     HttpClientResponse response = await request.close();
     print(response.statusCode);
     return response;
+  }
+
+  static Future<bool> deleteAsync(int reservationId) async {
+    HttpClientRequest request = await client.deleteUrl(Uri.parse(Config.resUrl + '/Reservations/' + reservationId.toString()));
+    HttpClientResponse response = await request.close();
+    return response.statusCode == 200;
   }
 
   static Future<List<ReservationSlot>> getEmptyReservationSlotsList() async {

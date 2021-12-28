@@ -1,6 +1,7 @@
 import 'package:charging_stations_mobile/screens/charging_stations.dart';
 import 'package:charging_stations_mobile/screens/chargers.dart';
 import 'package:charging_stations_mobile/screens/tenants.dart';
+import 'package:charging_stations_mobile/screens/user_reservations.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -26,6 +27,14 @@ class AppDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const TenantsScreen(),
+                ),
+              ),
+            ),
+          _createDrawerItem(icon: Icons.electrical_services, text: 'My Reservations', onTap: () =>
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const UserReservationsScreen(),
                 ),
               ),
             ),

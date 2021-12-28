@@ -49,15 +49,6 @@ class _ChargingStationDetailScreenState extends State<ChargingStationDetailScree
                   ListTile(
                       leading: const Icon(Icons.location_on_sharp, color: Colors.red,),
                       title: Text(chargingStation.address),
-                      trailing: Wrap(
-                        spacing: 20,
-                        children: [
-                          InkResponse(
-                            child: const Text("See on map", style: TextStyle(color: Colors.blue),),
-                            onTap: () {},
-                          ),
-                        ],
-                      )
                   ),
                   ListTile(
                       leading: const Icon(Icons.star, color: Colors.amber,),
@@ -217,6 +208,11 @@ class _ChargingStationDetailScreenState extends State<ChargingStationDetailScree
 
   Widget createQuickReservationList(ChargingStation chargingStation){
     if (chargingStation.reservationSlots != null){
+
+      if ((chargingStation.reservationSlots as List<ReservationSlot>).isEmpty){
+        return const Text("No reservation slots available.");
+      }
+
       var reservationSlots = chargingStation.reservationSlots as List<ReservationSlot>;
       return Expanded(
           child: ListView.builder(
@@ -227,9 +223,16 @@ class _ChargingStationDetailScreenState extends State<ChargingStationDetailScree
               var from = "${reservationSlot.from.hour.toString().padLeft(2, '0')}:${reservationSlot.from.minute.toString().padRight(2, '0')}";
               var to = "${reservationSlot.to.hour.toString().padLeft(2, '0')}:${reservationSlot.to.minute.toString().padRight(2, '0')}";
 
+              var suffixFrom = " (${reservationSlot.from.day.toString()}.${reservationSlot.from.month.toString()}.)";
+              var suffix = " (${reservationSlot.to.day.toString()}.${reservationSlot.to.month.toString()}.)";
+
+              if (suffix == suffixFrom) {
+                suffix = "";
+              }
+
               return ListTile(
                 leading: const Icon(Icons.electrical_services),
-                title: Text("$day, $from - $to"),
+                title: Text("$day, $from - $to $suffix"),
                 subtitle: Text(reservationSlot.chargerName),
                 onTap: () {
                   showDialog(

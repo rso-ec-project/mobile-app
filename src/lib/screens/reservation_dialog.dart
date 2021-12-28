@@ -63,7 +63,7 @@ class _ReservationDialogState extends State<ReservationDialog> {
           spacing: 20,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            Text(DateFormat('dd.MM.yyyy hh:mm').format(startTime), style: const TextStyle(fontSize: 18),),
+            Text(DateFormat('dd.MM.yyyy HH:mm').format(startTime), style: const TextStyle(fontSize: 18),),
             InkResponse(
                 child: const Icon(Icons.edit, color: Colors.blue,),
                 onTap: () {
@@ -111,7 +111,7 @@ class _ReservationDialogState extends State<ReservationDialog> {
           itemHeight: 50,
         ),
         const Text("To:", style: TextStyle(fontSize: 16),),
-        Text(DateFormat('dd.MM.yyyy hh:mm').format(endTime), style: const TextStyle(fontSize: 18),),
+        Text(DateFormat('dd.MM.yyyy HH:mm').format(endTime), style: const TextStyle(fontSize: 18),),
         const SizedBox(
           height: 20,
         ),

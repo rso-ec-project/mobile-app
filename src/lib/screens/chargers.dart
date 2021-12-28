@@ -41,6 +41,13 @@ class _ChargersScreenState extends State<ChargersScreen> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<Charger> data = snapshot.data as List<Charger>;
+
+                  if (data.isEmpty){
+                    return const Center(
+                      child: Text("This charging station has no registered chargers."),
+                    );
+                  }
+
                   return ListView.builder(
                       itemCount: data.length,
                       itemBuilder: (BuildContext context, int index) {

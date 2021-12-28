@@ -70,7 +70,7 @@ class _ReservationSlotsScreenState extends State<ReservationSlotsScreen> {
 
                         return ListTile(
                           leading: const Icon(Icons.electrical_services),
-                          title: Text(range),
+                          title: Text(range + ' (${reservationSlot.duration} min)'),
                           subtitle: Text(reservationSlot.chargerName),
                           onTap: () {
                             showDialog(
