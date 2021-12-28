@@ -5,6 +5,7 @@ import 'package:charging_stations_mobile/models/reservation_slot.dart';
 import 'package:charging_stations_mobile/screens/comment_dialog.dart';
 import 'package:charging_stations_mobile/screens/comments.dart';
 import 'package:charging_stations_mobile/screens/chargers.dart';
+import 'package:charging_stations_mobile/screens/reservation_dialog.dart';
 import 'package:charging_stations_mobile/services/charging_station_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -230,6 +231,12 @@ class _ChargingStationDetailScreenState extends State<ChargingStationDetailScree
                 leading: const Icon(Icons.electrical_services),
                 title: Text("$day, $from - $to"),
                 subtitle: Text(reservationSlot.chargerName),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (_) => ReservationDialog(reservationSlot: reservationSlot)
+                  );
+                },
               );
             },
         )

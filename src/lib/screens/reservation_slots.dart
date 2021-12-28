@@ -1,4 +1,5 @@
 import 'package:charging_stations_mobile/models/reservation_slot.dart';
+import 'package:charging_stations_mobile/screens/reservation_dialog.dart';
 import 'package:charging_stations_mobile/services/reservation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -71,6 +72,12 @@ class _ReservationSlotsScreenState extends State<ReservationSlotsScreen> {
                           leading: const Icon(Icons.electrical_services),
                           title: Text(range),
                           subtitle: Text(reservationSlot.chargerName),
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (_) => ReservationDialog(reservationSlot: reservationSlot)
+                            );
+                          },
                         );
                       },
                     );
