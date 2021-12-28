@@ -1,6 +1,7 @@
 import 'package:charging_stations_mobile/screens/charging_stations.dart';
 import 'package:charging_stations_mobile/screens/chargers.dart';
 import 'package:charging_stations_mobile/screens/tenants.dart';
+import 'package:charging_stations_mobile/screens/user_dialog.dart';
 import 'package:charging_stations_mobile/screens/user_reservations.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,12 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
             ),
+          const SizedBox(
+            height: 30,
+          ),
+          const Center(
+            child: UserDialog(),
+          )
           ],
       ),
     );
