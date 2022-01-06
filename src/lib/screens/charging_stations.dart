@@ -4,6 +4,8 @@ import 'package:charging_stations_mobile/services/charging_station_service.dart'
 import 'package:charging_stations_mobile/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
+import '../config.dart';
+
 class ChargingStationsScreen extends StatefulWidget {
   const ChargingStationsScreen({Key? key}) : super(key: key);
 
@@ -18,7 +20,7 @@ class _ChargingStationsScreenState extends State<ChargingStationsScreen> {
   @override
   void initState() {
     super.initState();
-    futureChargingStations = ChargingStationService.getAsync();
+    futureChargingStations = ChargingStationService.getAsync(Config.lat, Config.lng);
   }
 
   @override
@@ -43,7 +45,7 @@ class _ChargingStationsScreenState extends State<ChargingStationsScreen> {
                             var chargingStation = data[index];
                             return ListTile(
                               title: Text(chargingStation.tenantId.toString() + ' ' + chargingStation.name),
-                              subtitle: Text(chargingStation.address),
+                              subtitle: Text(getAddressAndDistance(chargingStation)),
                               isThreeLine: true,
                               onTap: () {
                                 Navigator.push(
@@ -67,5 +69,16 @@ class _ChargingStationsScreenState extends State<ChargingStationsScreen> {
           ],
         )
     );
+  }
+
+  String getAddressAndDistance(ChargingStationBasic chargingStationBasic){
+    var str = chargingStationBasic.address;
+    if (chargingStationBasic.distance != null){
+      var dist = chargingStationBasic.distance as double;
+      str += '\nDistance: ' + dist.toStringAsFixed(2) + 'km';
+    } else {
+      str += '\nCould not calculate distance.';
+    }
+    return str;
   }
 }

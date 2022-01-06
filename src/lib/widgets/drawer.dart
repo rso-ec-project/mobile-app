@@ -1,5 +1,6 @@
 import 'package:charging_stations_mobile/screens/charging_stations.dart';
 import 'package:charging_stations_mobile/screens/chargers.dart';
+import 'package:charging_stations_mobile/screens/news_page.dart';
 import 'package:charging_stations_mobile/screens/tenants.dart';
 import 'package:charging_stations_mobile/screens/user_dialog.dart';
 import 'package:charging_stations_mobile/screens/user_reservations.dart';
@@ -36,6 +37,14 @@ class AppDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const UserReservationsScreen(),
+                ),
+              ),
+            ),
+          _createDrawerItem(icon: Icons.description, text: 'News', onTap: () =>
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NewsScreen(),
                 ),
               ),
             ),

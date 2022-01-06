@@ -1,7 +1,11 @@
 class Config {
-  static String csUrl = 'https://10.0.2.2:49153/api/v1';
-  static String comUrl = 'https://10.0.2.2:49155/api/v1';
-  static String resUrl = 'https://10.0.2.2:49157/api/v1';
+  static const String address = 'http://20.93.189.135';
+  static String csUrl = address + '/charging-stations/api/v1';
+  static String comUrl = address + '/comments/api/v1';
+  static String resUrl = address + '/reservations/api/v1';
 
   static int userId = 1;
+
+  static double lat = 46.0523937;
+  static double lng = 14.5109711;
 }
