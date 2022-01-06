@@ -8,11 +8,12 @@ class ChargingStation {
   final String address;
   final double latitude;
   final double longitude;
+  final double? distance;
   final int tenantId;
   final Rating? ratingDetails;
   final List<ReservationSlot>? reservationSlots;
 
-  ChargingStation(this.id, this.name, this.address, this.latitude, this.longitude, this.tenantId, this.ratingDetails, this.reservationSlots);
+  ChargingStation(this.id, this.name, this.address, this.latitude, this.longitude, this.distance, this.tenantId, this.ratingDetails, this.reservationSlots);
 
   factory ChargingStation.fromJson(Map<String, dynamic> json) {
 
@@ -38,6 +39,7 @@ class ChargingStation {
         json['Address'],
         json['Latitude'],
         json['Longitude'],
+        json['DistanceFromLocation'],
         json['TenantId'],
         ratingDetails,
         reservationSlots

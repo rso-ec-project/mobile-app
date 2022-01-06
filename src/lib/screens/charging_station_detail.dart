@@ -10,6 +10,8 @@ import 'package:charging_stations_mobile/services/charging_station_service.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../config.dart';
+
 class ChargingStationDetailScreen extends StatefulWidget {
   @override
   _ChargingStationDetailScreenState createState() => _ChargingStationDetailScreenState();
@@ -29,7 +31,7 @@ class _ChargingStationDetailScreenState extends State<ChargingStationDetailScree
     // TODO: implement initState
     super.initState();
     chargingStationId = widget.chargingStationId;
-    futureChargingStation = ChargingStationService.getOneAsync(chargingStationId);
+    futureChargingStation = ChargingStationService.getOneAsync(chargingStationId, Config.lat, Config.lng);
   }
 
   @override
@@ -46,9 +48,23 @@ class _ChargingStationDetailScreenState extends State<ChargingStationDetailScree
             body: Center(
               child: Column(
                 children: [
-                  ListTile(
-                      leading: const Icon(Icons.location_on_sharp, color: Colors.red,),
-                      title: Text(chargingStation.address),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ListTile(
+                          leading: const Icon(Icons.location_on_sharp, color: Colors.red,),
+                          title: Text(chargingStation.address),
+                          trailing: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            spacing: 10,
+                            children: [
+                              const Icon(Icons.assistant_direction, color: Colors.blue,),
+                              Text(getDistance(chargingStation) + 'km')
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   ListTile(
                       leading: const Icon(Icons.star, color: Colors.amber,),
@@ -248,5 +264,12 @@ class _ChargingStationDetailScreenState extends State<ChargingStationDetailScree
     else{
       return const Text("Reservations are currently unavailable");
     }
+  }
+
+  String getDistance(ChargingStation chargingStation) {
+    if (chargingStation.distance != null) {
+      return (chargingStation.distance as double).toStringAsFixed(2);
+    }
+    return "Could not calculate distance.";
   }
 }
